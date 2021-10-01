@@ -1,0 +1,58 @@
+{% extends "layout.twig" %}
+
+{% block body %}
+
+{% if errorForm %}
+
+{% for error in errorForm %}
+{% if error.username %}
+  <div class="alert alert-danger" id="alert-danger">{{error.username.message}}</div>
+{% endif %}
+{% if error.firstname %}
+  <div class="alert alert-danger" id="alert-danger">{{error.firstname.message}}</div>
+{% endif %}
+{% if error.lastname %}
+  <div class="alert alert-danger" id="alert-danger">{{error.lastname.message}}</div>
+{% endif %}
+{% if error.email %}
+  <div class="alert alert-danger" id="alert-danger">{{error.email.message}}</div>
+{% endif %}
+
+
+    {% endfor %}
+    {% endif %}
+    
+
+
+
+<h1>Mettre a jour votre profile</h1>
+
+
+<form action="/users/signup" method="POST">
+    
+    <div class="form-group">
+    <label for="username">username :</label>
+    <input type="text" name="username" id="username" value="{{user.username}}" class="form-control">
+    </div>
+
+    <div class="form-group">
+    <label for="firstname">firstname :</label>
+    <input type="text" name="firstname" id="firstname" value="{{user.firstname}}" class="form-control">
+    </div>
+
+    <div class="form-group">
+    <label for="lastname">lastname :</label>
+    <input type="text" name="lastname" id="lastname" value="{{user.lastname}}" class="form-control">
+    </div>
+
+    <div class="form-group">
+    <label for="email">email :</label>
+    <input type="email" name="email" id="email" value="{{user.email}}" class="form-control">
+    </div>
+
+    
+
+    <button type="submit" class="btn btn-success mt-3">Mettre a jour</button>
+</form>
+
+{% endblock body %}

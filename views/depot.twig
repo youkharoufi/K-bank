@@ -1,0 +1,21 @@
+{% extends "layout.twig" %}
+
+{% block body %}
+    <h1> Depot </h1>
+
+
+    <form action="/depot" method="POST">
+        
+        <div class="form-group">
+            <label for="username">Montant a deposer : </label>
+            <input type="number" id="montant"  name="montant" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <p><i class="bi bi-book-half"></i> votre compte est actuellement de {{user.current}} $<p> 
+        </div>
+
+
+        <button type="submit" class="btn btn-success mt-3">Depot</button>
+
+{% endblock body %}

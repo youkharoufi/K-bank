@@ -1,0 +1,109 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+  <p>Welcome to K-Bank</p>
+
+  {% if user %}
+
+  <nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
+    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"><p>A propos de K-BANK :</p></div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+  
+
+
+
+{% if errorForm %}
+
+{% for error in errorForm %}
+{% if error.username %}
+  <div class="alert alert-danger" id="alert-danger">{{error.username.message}}</div>
+{% endif %}
+{% if error.firstname %}
+  <div class="alert alert-danger" id="alert-danger">{{error.firstname.message}}</div>
+{% endif %}
+{% if error.lastname %}
+  <div class="alert alert-danger" id="alert-danger">{{error.lastname.message}}</div>
+{% endif %}
+{% if error.email %}
+  <div class="alert alert-danger" id="alert-danger">{{error.email.message}}</div>
+{% endif %}
+
+
+    {% endfor %}
+    {% endif %}
+    
+
+
+
+<h1>Mettre a jour votre profile</h1>
+
+
+<form action="/users/post" method="POST">
+    
+    <div class="form-group">
+    <label for="username">username :</label>
+    <input type="text" name="username" id="username" value="{{user.username}}" class="form-control">
+    </div>
+
+    <div class="form-group">
+    <label for="firstname">firstname :</label>
+    <input type="text" name="firstname" id="firstname" value="{{user.firstname}}" class="form-control">
+    </div>
+
+    <div class="form-group">
+    <label for="lastname">lastname :</label>
+    <input type="text" name="lastname" id="lastname" value="{{user.lastname}}" class="form-control">
+    </div>
+
+    <div class="form-group">
+    <label for="email">email :</label>
+    <input type="email" name="email" id="email" value="{{user.email}}" class="form-control">
+    </div>
+
+    
+
+    <button type="submit" class="btn btn-success mt-3">Mettre a jour</button>
+</form>
+
+
+  
+  </div>
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+</div>
+
+  {% endif %}
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/images/bank1.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/images/bank2.jpg" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="/images/bank3.jpg" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+{% endblock %}
